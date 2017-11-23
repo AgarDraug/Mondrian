@@ -4,7 +4,7 @@ import Square from './Square';
 class Container extends React.Component{
   renderSquares() {
     let numSquares = [];
-    const rows = 20;
+    const rows = 60;
 
     for (let i = 0; i < (rows); i++) {
       numSquares.push(i);
@@ -12,7 +12,14 @@ class Container extends React.Component{
 
     const ret = numSquares.map(item => {
       return numSquares.map(elem => {
-        return <Square key={item + elem} row={item} column={elem} />;
+        return (
+          <Square 
+            color={this.props.color} 
+            key={item + elem} 
+            row={item} 
+            column={elem} 
+          />
+        );
       })
     });
 

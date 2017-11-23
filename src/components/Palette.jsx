@@ -4,12 +4,12 @@ class Palette extends React.Component {
   render() {
     return (
       <div style={ palette }>
-        <div style={{...square, ...orange}}></div>
-        <div style={{...square, ...red}}></div>
-        <div style={{...square, ...blue}}></div>
-        <div style={{...square, ...yellow}}></div>
-        <div style={{...square, ...black}}></div>
-        <div style={{...square, ...white}}></div>
+        <div style={{...square, ...orange}} onClick={this.props.selectColor(orange)} />
+        <div style={{...square, ...red}} onClick={this.props.selectColor(red)} />        
+        <div style={{...square, ...blue}} onClick={this.props.selectColor(blue)} />
+        <div style={{...square, ...yellow}} onClick={this.props.selectColor(yellow)} />
+        <div style={{...square, ...black}} onClick={this.props.selectColor(black)} />
+        <div style={{...square, ...white}} onClick={this.props.selectColor(white)} />
       </div>
     );
   }
