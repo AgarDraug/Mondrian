@@ -2,9 +2,33 @@ import React from 'react';
 
 class Square extends React.Component{
   state = {
+    margin: '1px',
+    width : '18px',
+    height: '18px',
     color: '#fff',
     selected: false,
+    hover: false,
   };
+
+
+  toggleHover = () => () => {
+    console.log('in');
+    if (!this.state.hover) {
+      this.setState({
+        margin: '0px',
+        width: '20px',
+        height: '20px',
+        hover: true,
+      });
+    } else {
+      this.setState({
+        margin: '1px',
+        width : '18px',
+        height: '18px',
+        hover: false,
+      });
+    }
+  }
 
   checkColor() {
     if (this.state.selected) {
@@ -27,9 +51,9 @@ class Square extends React.Component{
   render() {
     const bgColor = (this.props.color && this.props.selected) ? this.checkColor() : '#fff';
     const styles = {
-      width: '18px',
-      height: '18px',
-      margin: '1px',
+      width: this.state.width,
+      height: this.state.height,
+      margin: this.state.margin,
       display: 'inline-block',
       position: 'relative',
       border: '1px solid black',
@@ -41,6 +65,8 @@ class Square extends React.Component{
     return (
       <div 
         style={ styles }
+        onMouseEnter={this.toggleHover()}
+        onMouseLeave={this.toggleHover()}
         onClick={this.props.selectSquare(
           { row: this.props.row, column: this.props.column }
         )}
