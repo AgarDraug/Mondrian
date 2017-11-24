@@ -2,27 +2,33 @@ import React from 'react';
 
 class Square extends React.Component{
   state = {
+    color: '#fff',
     selected: false,
   };
 
-  selected = () => {
-    if (!this.state.selected) {
-      this.setState({ 
-        selected: true, 
-        color: this.props.color, 
+  checkColor() {
+    if (this.state.selected) {
+      return this.state.color;
+    }
+
+    const check =  this.props.selected.findIndex(first =>
+      (first.row === this.props.row && first.column === this.props.column));
+      console.log(check);
+    if (check !== -1) {
+      this.setState({
+        color: this.props.color,
+        selected: true,
       });
-     // this.props.style.backgroundColor = this.props.color;
-      console.log(this.props.row, this.props.column, this);
-    } else {
-      this.setState({ selected: false });
+
+      return this.props.color;
     }
   }
   
   render() {
-    const bgColor = this.state.color ? this.state.color : '#fff';
+    const bgColor = (this.props.color && this.props.selected) ? this.checkColor() : '#fff';
     const styles = {
-      width: '8px',
-      height: '8px',
+      width: '18px',
+      height: '18px',
       margin: '1px',
       display: 'inline-block',
       position: 'relative',
@@ -35,7 +41,9 @@ class Square extends React.Component{
     return (
       <div 
         style={ styles }
-        onClick={this.selected}
+        onClick={this.props.selectSquare(
+          { row: this.props.row, column: this.props.column }
+        )}
       />
     );
   }
