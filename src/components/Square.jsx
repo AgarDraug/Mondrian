@@ -10,9 +10,19 @@ class Square extends React.Component{
     hover: false,
   };
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.selected) {
+      if (nextProps.color && nextProps.selected && (this.state.color !== nextProps.color)) {
+        this.setState({
+          color: nextProps.color,
+          selected: true,
+        });
+      }
+    }
+  }
+
 
   toggleHover = () => () => {
-    console.log('in');
     if (!this.state.hover) {
       this.setState({
         margin: '0px',
@@ -29,27 +39,9 @@ class Square extends React.Component{
       });
     }
   }
-
-  checkColor() {
-    if (this.state.selected) {
-      return this.state.color;
-    }
-
-    const check =  this.props.selected.findIndex(first =>
-      (first.row === this.props.row && first.column === this.props.column));
-      console.log(check);
-    if (check !== -1) {
-      this.setState({
-        color: this.props.color,
-        selected: true,
-      });
-
-      return this.props.color;
-    }
-  }
   
   render() {
-    const bgColor = (this.props.color && this.props.selected) ? this.checkColor() : '#fff';
+    const bgColor = this.state.color;    
     const styles = {
       width: this.state.width,
       height: this.state.height,
