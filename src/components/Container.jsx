@@ -114,7 +114,7 @@ class Container extends React.Component{
   }
 
   renderSquares() {
-    const rows = 30;
+    const rows = 40;
     const ret = [];
     let key = 0;
 
@@ -152,7 +152,7 @@ class Container extends React.Component{
   
   render() {
     return (
-    <div style={ styles }>
+    <div style={ styles } id={'canvas'}>
       {this.renderSquares()}
     </div>
     );

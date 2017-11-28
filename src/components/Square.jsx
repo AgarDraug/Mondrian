@@ -3,8 +3,8 @@ import React from 'react';
 class Square extends React.Component{
   state = {
     margin: '1px',
-    width : '18px',
-    height: '18px',
+    width : '13px',
+    height: '13px',
     color: '#fff',
     selected: false,
     hover: false,
@@ -26,15 +26,15 @@ class Square extends React.Component{
     if (!this.state.hover) {
       this.setState({
         margin: '0px',
-        width: '20px',
-        height: '20px',
+        width: '15px',
+        height: '15px',
         hover: true,
       });
     } else {
       this.setState({
         margin: '1px',
-        width : '18px',
-        height: '18px',
+        width : '13px',
+        height: '13px',
         hover: false,
       });
     }
